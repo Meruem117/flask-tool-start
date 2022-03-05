@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
     {% block head %}{% endblock %}
 </head>
+
 <body>
 {% block body %}{% endblock %}
-<footer>Flask Start©2021 Created by Meruem117</footer>
+
+<div class="container">
+    <footer class="py-3 my-4">
+        <p class="text-center text-muted">Flask Tool Start©2021 Created by Meruem117</p>
+    </footer>
+</div>
+
+<script src="{{ url_for('static',filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
+
 </html>

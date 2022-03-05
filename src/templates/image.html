@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Image</h1>
-    <img id="image" src="{{ image }}" alt="image">
-    <form action="/image" enctype="multipart/form-data" method="post">
-        <input type="file" accept="image/*" name="image">
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container p-5">
+        <img class="img-fluid" id="image" src="{{ image | default('https://img.yzcdn.cn/vant/cat.jpeg') }}" alt="image">
+        <form class="row g-3" action="/image" enctype="multipart/form-data" method="post">
+            <div>
+                <label class="form-label">Select an image</label>
+                <input class="form-control form-control-lg" type="file" accept="image/*" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 {% endblock %}

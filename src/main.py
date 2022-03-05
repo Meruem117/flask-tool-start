@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from modules import ImageForm
+from modules import ImageForm, image_to_ico
 from werkzeug.datastructures import CombinedMultiDict
 import os
 
@@ -20,7 +20,8 @@ def image_page():
         if form.validate():
             image = form.image.data
             dir_path = os.path.dirname(__file__)
-            image.save(os.path.join(dir_path + '/static/images', image.filename))
+            image_to_ico(image.filename, 256 * 256)
+            # image.save(os.path.join(dir_path + '/static/images', image.filename))
             return "success"
 
 
