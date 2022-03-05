@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
-from forms import ImageForm
+from modules import ImageForm
 from werkzeug.datastructures import CombinedMultiDict
+import os
 
 app = Flask(__name__)
 
@@ -18,8 +19,9 @@ def image_page():
         form = ImageForm(CombinedMultiDict([request.form, request.files]))
         if form.validate():
             image = form.image.data
-            print(image)
-            return 'Success'
+            dir_path = os.path.dirname(__file__)
+            image.save(os.path.join(dir_path + '/static/images', image.filename))
+            return "success"
 
 
 if __name__ == '__main__':

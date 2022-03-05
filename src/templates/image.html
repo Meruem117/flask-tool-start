@@ -6,7 +6,7 @@
 
 {% block body %}
     <h1>Image</h1>
-    <img id="image" src="" alt="image">
+    <img id="image" src="{{ image }}" alt="image">
     <form action="/image" enctype="multipart/form-data" method="post">
         <input type="file" accept="image/*" name="image">
         <button type="submit">Submit</button>
