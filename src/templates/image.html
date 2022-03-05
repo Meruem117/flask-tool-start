@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Image
+{% endblock %}
+
+{% block body %}
+    <h1>Image</h1>
+    <form action="/image" method="post">
+        <input type="file" accept="image/*" name="image">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
