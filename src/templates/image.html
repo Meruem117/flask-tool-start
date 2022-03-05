@@ -6,7 +6,11 @@
 
 {% block body %}
     <div class="container p-5">
-        <img class="img-fluid" id="image" src="{{ image | default('https://img.yzcdn.cn/vant/cat.jpeg') }}" alt="image">
+        <img class="img-thumbnail"
+             src="{{ url_for('static', filename=image_path)  | default('https://img.yzcdn.cn/vant/cat.jpeg') }}"
+             alt="image"
+             title="{{ image_name }}"
+             style="width: 300px; height: 300px;">
         <form class="row g-3" action="/image" enctype="multipart/form-data" method="post">
             <div>
                 <label class="form-label">Select an image</label>

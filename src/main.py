@@ -19,10 +19,9 @@ def image_page():
         form = ImageForm(CombinedMultiDict([request.form, request.files]))
         if form.validate():
             image = form.image.data
-            image_save(image)
-            # new_image = image_to_ico(image.filename)
-            # new_image.save(os.path.join(dir_path + '/static/images', image.filename))
-            return "success"
+            image_name = image_save(image)
+            image_path = 'tmp/' + image_name
+            return render_template('image.html', image_name=image_name, image_path=image_path)
 
 
 if __name__ == '__main__':
