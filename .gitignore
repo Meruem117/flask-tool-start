@@ -131,4 +131,5 @@ dmypy.json
 
 images/
 bootstrap/
+jquery/
 tmp/

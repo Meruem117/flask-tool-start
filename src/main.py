@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from modules.forms import ImageForm
-from modules.image import image_save
+from modules.image import image_tmp_save, image_to_ico, image_tmp_delete
 from werkzeug.datastructures import CombinedMultiDict
 
 app = Flask(__name__)
@@ -19,9 +19,10 @@ def image_page():
         form = ImageForm(CombinedMultiDict([request.form, request.files]))
         if form.validate():
             image = form.image.data
-            image_name = image_save(image)
-            image_path = 'tmp/' + image_name
-            return render_template('image.html', image_name=image_name, image_path=image_path)
+            image_path, image_name = image_tmp_save(image)
+            image_to_ico(image_path, image_name, size)
+            image_tmp_delete(image_path)
+            return render_template('image.html')
 
 
 if __name__ == '__main__':

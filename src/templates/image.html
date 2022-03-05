@@ -7,16 +7,30 @@
 {% block body %}
     <div class="container p-5">
         <img class="img-thumbnail"
-             src="{{ url_for('static', filename=image_path)  | default('https://img.yzcdn.cn/vant/cat.jpeg') }}"
+             id="image"
+             src=""
              alt="image"
-             title="{{ image_name }}"
              style="width: 300px; height: 300px;">
         <form class="row g-3" action="/image" enctype="multipart/form-data" method="post">
             <div>
                 <label class="form-label">Select an image</label>
-                <input class="form-control form-control-lg" type="file" accept="image/*" name="image">
+                <input class="form-control form-control-lg" id="file" type="file" accept="image/*" name="image"
+                       onchange="handleChange()">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    <script>
+        function handleChange() {
+            const file = $('#file')[0].files[0]
+            const image = $('#image')
+            const reader = new FileReader()
+            if (file) {
+                reader.readAsDataURL(file)
+            }
+            reader.onload = function () {
+                image.attr('src', reader.result.toString())
+            }
+        }
+    </script>
 {% endblock %}
