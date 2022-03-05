@@ -6,7 +6,8 @@
 
 {% block body %}
     <h1>Image</h1>
-    <form action="/image" method="post">
+    <img id="image" src="" alt="image">
+    <form action="/image" enctype="multipart/form-data" method="post">
         <input type="file" accept="image/*" name="image">
         <button type="submit">Submit</button>
     </form>
