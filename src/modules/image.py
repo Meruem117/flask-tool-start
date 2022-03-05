@@ -1,10 +1,16 @@
+from wand.image import Image
 import os
-from PIL import Image
 
 
-def image_to_ico(image: str, size: int):
-    tmp = os.path.splitext(image)
-    if tmp[1] == '.jpg' or '.png':
-        ico = tmp[0] + '.ico'
-        # im = Image.open(os.path.join(input_path, image)).resize(size)
-        print(ico)
+def image_save(image, path: str = None):
+    if path is None:
+        par_dir = os.path.pardir
+        cur_dir = os.path.dirname(__file__)
+        tmp_dir = os.path.abspath(os.path.join(cur_dir, par_dir)) + '\\tmp'
+        image.save(tmp_dir, image.filename)
+
+
+def image_to_ico(image: str):
+    with Image(filename=image) as original:
+        with original.convert('ico') as converted:
+            return converted
