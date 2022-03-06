@@ -12,12 +12,17 @@ def image_tmp_save(image):
 
 
 def image_to_ico(image, name, size):
+    # save to desktop
+    # name += '.ico'
+    # path = os.path.join(os.path.expanduser('~'), 'Desktop')
+    # dev tmp save
+    name = os.path.splitext(image)[0] + '.ico'
     # name = os.path.splitext(image)[0].split('\\')[-1][20:] + '.ico'
-    path = os.path.join(os.path.expanduser('~'), 'Desktop')
     with Image(filename=image) as img:
         img.resize(size, size)
         img.format = 'ico'
-        img.save(filename=os.path.join(path, name))
+        # img.save(filename=os.path.join(path, name))
+        img.save(filename=name)
 
 
 def image_tmp_delete(image):
