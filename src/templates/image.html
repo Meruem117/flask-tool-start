@@ -7,29 +7,35 @@
 {% block body %}
     <div class="container p-5">
         <img class="img-thumbnail"
-             id="image"
-             src=""
-             alt="image"
-             style="width: 300px; height: 300px;">
+             id="preview"
+             src="https://flask.net.cn/Application/Home/View/Public/img/flask-icon.png"
+             alt="preview"
+             style="width: 256px; height: 256px;">
         <form class="row g-3" action="/image" enctype="multipart/form-data" method="post">
             <div>
                 <label class="form-label">Select an image</label>
-                <input class="form-control form-control-lg" id="file" type="file" accept="image/*" name="image"
+                <input class="form-control form-control-lg" id="image" type="file" accept="image/*" name="image"
                        onchange="handleChange()">
+            </div>
+            <div>
+                <label class="form-label">Input image name</label>
+                <input class="form-control form-control-lg" id="title" type="text" name="title" value="favicon">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
     <script>
         function handleChange() {
-            const file = $('#file')[0].files[0]
-            const image = $('#image')
+            const preview = $('#preview')
+            const image = $('#image')[0].files[0]
+            {#const title = $('#title')#}
             const reader = new FileReader()
-            if (file) {
-                reader.readAsDataURL(file)
+            if (image) {
+                reader.readAsDataURL(image)
             }
             reader.onload = function () {
-                image.attr('src', reader.result.toString())
+                preview.attr('src', reader.result.toString())
+                {#title.attr('value', image.name)#}
             }
         }
     </script>

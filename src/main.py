@@ -13,16 +13,13 @@ def index_page():
 
 @app.route('/image', methods=['GET', 'POST'])
 def image_page():
-    if request.method == 'GET':
-        return render_template('image.html')
-    else:
+    if request.method == 'POST':
         form = ImageForm(CombinedMultiDict([request.form, request.files]))
         if form.validate():
             image = form.image.data
-            image_path = image_tmp_save(image)
-            image_to_ico(image_path, 50)
-            image_tmp_delete(image_path)
-            return render_template('image.html')
+            title = form.title.data
+            print(title)
+    return render_template('image.html')
 
 
 if __name__ == '__main__':
