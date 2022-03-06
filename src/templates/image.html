@@ -6,16 +6,18 @@
 
 {% block body %}
     <div class="container p-5">
-        <img class="img-thumbnail"
-             id="preview"
-             src="https://flask.net.cn/Application/Home/View/Public/img/flask-icon.png"
-             alt="preview"
-             style="width: 256px; height: 256px;">
+        <img class="img-thumbnail" id="preview" alt="preview" style="width: 256px; height: 256px;"
+             src="{{ url_for('static', filename='image/flask-icon.png') }}">
         <form class="row g-3" enctype="multipart/form-data" method="post">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            {{ form.image(class="form-control form-control-lg",id="image",onchange="handleChange()") }}
-            {{ form.title(class="form-control form-control-lg",value="favicon") }}
-            {{ form.size }}
+            {{ form.image(class="form-control form-control-lg", id="image", onchange="handleChange()") }}
+            {{ form.title(class="form-control form-control-lg", value="favicon") }}
+            {% for subfield in form.size %}
+                <div class="form-check form-check-inline">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+            {% endfor %}
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </div>
