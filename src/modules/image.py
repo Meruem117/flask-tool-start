@@ -30,3 +30,17 @@ def image_tmp_delete(image):
         os.remove(image)
     except FileNotFoundError:
         print('File not exists')
+
+
+def image_resize(image, width, height):
+    with Image(file=image) as img:
+        org_width = img.width
+        org_height = img.height
+        print(org_width, org_height)
+        img.resize(width, height)
+        # img.sample(width, height)
+
+
+def image_crop(image, left, top, right, bottom):
+    with Image(file=image) as img:
+        img.crop(left, top, right, bottom)
