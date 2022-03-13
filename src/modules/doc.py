@@ -2,9 +2,8 @@ from docx import Document
 import os
 
 
-def open_docx():
-    docx_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)) + '\\static\\docx'
-    docx_path = os.path.join(docx_dir, 'doc1.docx')
+def open_docx(dirname, filename):
+    docx_path = os.path.join(dirname, filename)
     document = Document(docx_path)
     return document
 
@@ -17,5 +16,6 @@ def handle_table(docx):
 
 
 if __name__ == '__main__':
-    doc = open_docx()
+    docx_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)) + '\\static\\docx'
+    doc = open_docx(docx_dir, 'doc1.docx')
     handle_table(doc)
