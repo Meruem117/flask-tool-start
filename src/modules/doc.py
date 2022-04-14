@@ -10,9 +10,13 @@ def open_docx(dirname, filename):
 
 def handle_table(docx):
     table = docx.tables[0]
-    time = table.cell(0, 2).paragraphs[0].runs[0]
-    time.text = time.text.replace(time.text, '2022年3月13日15时59分')
+    replace_text(table, 0, 2, '2022年3月13日15时59分')
     docx.save('../static/tmp/demo.docx')
+
+
+def replace_text(table, row, col, text):
+    run = table.cell(row, col).paragraphs[0].runs[0]
+    run.text = run.text.replace(run.text, text)
 
 
 if __name__ == '__main__':
