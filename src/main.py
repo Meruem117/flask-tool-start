@@ -1,7 +1,8 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template
 from flask_wtf import CSRFProtect
 from modules.forms import ImageForm
 from modules.image import image_tmp_save, image_to_ico, image_tmp_delete
+from modules.mysql import select_table_data
 
 app = Flask(__name__)
 CSRFProtect(app)
@@ -26,6 +27,12 @@ def image_page():
     else:
         print(form.errors)
     return render_template('image.html', form=form)
+
+
+@app.route('/table/<string:table_name>', methods=['GET'])
+def select_table(table_name):
+    list = select_table_data(table_name)
+    return render_template('table.html', list=list)
 
 
 if __name__ == '__main__':
