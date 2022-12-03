@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Table</title>
-</head>
-<body>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">id</th>
-        <th scope="col">name</th>
-        <th scope="col">mid</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for item in list %}
+{% extends 'base.html' %}
+
+{% block title %}
+    Table
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
         <tr>
-            <td>{{ item.id }}</td>
-            <td>{{ item.mid }}</td>
-            <td>{{ item.name }}</td>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">mid</th>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
-</body>
-</html>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.mid }}</td>
+                <td>{{ item.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
