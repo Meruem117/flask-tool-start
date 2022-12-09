@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_wtf import CSRFProtect
 from modules.forms import ImageForm
 from modules.image import image_tmp_save, image_to_ico, image_tmp_delete
-from modules.mysql import select_table_data
+from modules.mysql import show_database, show_tables, show_table_columns, select_table_data
 
 app = Flask(__name__)
 CSRFProtect(app)
@@ -29,10 +29,23 @@ def image_page():
     return render_template('image.html', form=form)
 
 
-@app.route('/table/<string:table_name>', methods=['GET'])
-def select_table(table_name):
-    list = select_table_data(table_name)
-    return render_template('table.html', list=list)
+@app.route('/db', methods=['GET'])
+def select_table():
+    list = show_database()
+    # return render_template('table.html', list=list)
+
+
+@app.route('/db/<string:database_name>', methods=['GET'])
+def select_table(database_name):
+    list = show_tables(database_name)
+    # return render_template('table.html', list=list)
+
+
+@app.route('/db/<string:database_name>/<string:table_name>', methods=['GET'])
+def select_table(database_name, table_name):
+    columns = show_table_columns(database_name, table_name)
+    list = select_table_data(database_name, table_name)
+    # return render_template('table.html', list=list)
 
 
 if __name__ == '__main__':
