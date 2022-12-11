@@ -8,11 +8,13 @@ def show_database():
     sql = "show databases"
     cursor.execute(sql)
     database_list = cursor.fetchall()
+    filter_list = ["information_schema", "performance_schema", "sys"]
+    result = [item for item in database_list if item["Database"] not in filter_list]
 
     cursor.close()
     con.close()
 
-    return database_list
+    return result
 
 
 def show_tables(database_name: str):
