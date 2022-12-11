@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Db
+{% endblock %}
+
+{% block body %}
+    <div class="container p-4">
+        <div class="row gx-5">
+            <div class="col">
+                <select class="form-select">
+                    {% for item in database_list %}
+                        <option>{{ item.Database }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+        <div class="row gx-5">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">mid</th>
+                    <th scope="col">name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if list %}
+                    {% for item in list %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.mid }}</td>
+                            <td>{{ item.name }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
