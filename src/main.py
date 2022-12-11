@@ -37,9 +37,9 @@ def db_page():
 
 @app.route('/db/<string:database_name>', methods=['GET'])
 def select_database(database_name):
-    list = show_tables(database_name)
-    # return render_template('db.html', list=list)
-    return ''
+    table_list = show_tables(database_name)
+    print(table_list)
+    return render_template('db.html', table_list=table_list)
 
 
 @app.route('/db/<string:database_name>/<string:table_name>', methods=['GET'])

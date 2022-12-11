@@ -5,20 +5,28 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container p-4">
+    <div class="container p-5">
         <div class="row gx-5">
             <div class="col">
-                <select class="form-select">
-                    {% for item in database_list %}
-                        <option>{{ item.Database }}</option>
-                    {% endfor %}
-                </select>
+                <label class="w-100 mb-2">Database
+                    <select class="form-select" onchange="changeDatabase(this)">
+                        {% for item in database_list %}
+                            <option value="{{ item.Database }}">{{ item.Database }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
             </div>
             <div class="col">
-
+                <label class="w-100 mb-2">Table
+                    <select class="form-select" onchange="changeTable(this)">
+                        {% for item in table_list %}
+                            <option value="{{ item }}">{{ item }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
             </div>
         </div>
-        <div class="row gx-5">
+        <div class="row mt-5">
             <table class="table">
                 <thead>
                 <tr>
@@ -41,4 +49,15 @@
             </table>
         </div>
     </div>
+
+    <script>
+        function changeDatabase(obj) {
+            let database = obj.options[obj.selectedIndex].value
+            fetch(`http://localhost:5000/db/${database}`)
+        }
+
+        function changeTable(obj) {
+
+        }
+    </script>
 {% endblock %}
