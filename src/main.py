@@ -30,22 +30,24 @@ def image_page():
 
 
 @app.route('/db', methods=['GET'])
-def select_table():
-    list = show_database()
-    # return render_template('table.html', list=list)
+def db_page():
+    database_list = show_database()
+    return render_template('db.html', database_list=database_list)
 
 
 @app.route('/db/<string:database_name>', methods=['GET'])
-def select_table(database_name):
+def select_database(database_name):
     list = show_tables(database_name)
-    # return render_template('table.html', list=list)
+    # return render_template('db.html', list=list)
+    return ''
 
 
 @app.route('/db/<string:database_name>/<string:table_name>', methods=['GET'])
 def select_table(database_name, table_name):
     columns = show_table_columns(database_name, table_name)
     list = select_table_data(database_name, table_name)
-    # return render_template('table.html', list=list)
+    # return render_template('db.html', list=list)
+    return ''
 
 
 if __name__ == '__main__':
