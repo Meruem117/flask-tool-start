@@ -11,7 +11,7 @@
                 <label class="w-100 mb-2">Database
                     <select class="form-select" onchange="changeDatabase(this)">
                         {% for item in database_list %}
-                            <option value="{{ item.Database }}">{{ item.Database }}</option>
+                            <option value="{{ item }}">{{ item }}</option>
                         {% endfor %}
                     </select>
                 </label>
@@ -55,7 +55,8 @@
 
         function changeDatabase(obj) {
             database = obj.options[obj.selectedIndex].value
-            fetch(`http://localhost:5000/db/${database}`)
+            window.open(`http://localhost:5000/db/${database}`)
+            {#fetch()#}
         }
 
         function changeTable(obj) {
