@@ -11,7 +11,11 @@
                 <label class="w-100 mb-2">Database
                     <select class="form-select" onchange="changeDatabase(this)">
                         {% for item in database_list %}
-                            <option value="{{ item }}">{{ item }}</option>
+                            {% if item == database_name %}
+                                <option value="{{ item }}" selected>{{ item }}</option>
+                            {% else %}
+                                <option value="{{ item }}">{{ item }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </label>
