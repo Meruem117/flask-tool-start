@@ -30,24 +30,21 @@ def image_page():
 
 
 @app.route('/db', methods=['GET'])
-def db_page():
-    database_list = show_database()
-    return render_template('db.html', database_list=database_list)
-
-
 @app.route('/db/<string:database_name>', methods=['GET'])
-def select_database(database_name):
-    table_list = show_tables(database_name)
-    print(table_list)
-    return render_template('db.html', table_list=table_list)
-
-
 @app.route('/db/<string:database_name>/<string:table_name>', methods=['GET'])
-def select_table(database_name, table_name):
-    columns = show_table_columns(database_name, table_name)
-    list = select_table_data(database_name, table_name)
-    # return render_template('db.html', list=list)
-    return ''
+def db_page(database_name=None, table_name=None):
+    database_list = show_database()
+    table_list = []
+    column_list = []
+    data_list = []
+    if database_name is not None:
+        table_list = show_tables(database_name)
+        if table_name is not None:
+            column_list = show_table_columns(database_name, table_name)
+            data_list = select_table_data(database_name, table_name)
+    return render_template('db.html', database_list=database_list, table_list=table_list,
+                           column_list=column_list,
+                           data_list=data_list)
 
 
 if __name__ == '__main__':
