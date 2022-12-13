@@ -58,6 +58,7 @@
 
         function changeTable(obj) {
             let table = obj.options[obj.selectedIndex].value
+            let database = '{{ database_name }}'
             window.location = `http://localhost:5000/db/${database}/${table}`
         }
     </script>
