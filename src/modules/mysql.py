@@ -24,7 +24,7 @@ def show_tables(database_name: str):
     sql = "show tables from %s"
     cursor.execute(sql % database_name)
     table_list = cursor.fetchall()
-    key = 'Tables_in_' + database_name
+    key = "Tables_in_" + database_name
     result = [item[key] for item in table_list]
 
     cursor.close()
@@ -40,11 +40,12 @@ def show_table_columns(database_name: str, table_name: str):
     sql = "show full columns from %s"
     cursor.execute(sql % table_name)
     column_list = cursor.fetchall()
+    result = [item["Field"] for item in column_list]
 
     cursor.close()
     con.close()
 
-    return column_list
+    return result
 
 
 def select_table_data(database_name: str, table_name: str):

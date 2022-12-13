@@ -24,7 +24,11 @@
                 <label class="w-100 mb-2">Table
                     <select class="form-select" onchange="changeTable(this)">
                         {% for item in table_list %}
-                            <option value="{{ item }}">{{ item }}</option>
+                            {% if item == table_name %}
+                                <option value="{{ item }}" selected>{{ item }}</option>
+                            {% else %}
+                                <option value="{{ item }}">{{ item }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </label>
@@ -34,21 +38,19 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">mid</th>
-                    <th scope="col">name</th>
+                    {% for item in column_list %}
+                        <th scope="col">{{ item }}</th>
+                    {% endfor %}
                 </tr>
                 </thead>
                 <tbody>
-                {% if list %}
-                    {% for item in list %}
-                        <tr>
-                            <td>{{ item.id }}</td>
-                            <td>{{ item.mid }}</td>
-                            <td>{{ item.name }}</td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
+                {% for item in data_list %}
+                    <tr>
+                        {% for col in column_list %}
+                            <td>{{ item[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

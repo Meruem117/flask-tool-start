@@ -44,8 +44,7 @@ def db_page(database_name=None, table_name=None):
             data_list = select_table_data(database_name, table_name)
     return render_template('db.html', database_list=database_list, database_name=database_name,
                            table_list=table_list, table_name=table_name,
-                           column_list=column_list,
-                           data_list=data_list)
+                           column_list=column_list, data_list=data_list)
 
 
 if __name__ == '__main__':
