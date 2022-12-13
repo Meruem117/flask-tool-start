@@ -9,7 +9,7 @@ def show_database():
     cursor.execute(sql)
     database_list = cursor.fetchall()
     filter_list = ["information_schema", "performance_schema", "sys"]
-    result = [item for item in database_list if item["Database"] not in filter_list]
+    result = [item["Database"] for item in database_list if item["Database"] not in filter_list]
 
     cursor.close()
     con.close()
@@ -24,11 +24,13 @@ def show_tables(database_name: str):
     sql = "show tables from %s"
     cursor.execute(sql % database_name)
     table_list = cursor.fetchall()
+    key = 'Tables_in_' + database_name
+    result = [item[key] for item in table_list]
 
     cursor.close()
     con.close()
 
-    return table_list
+    return result
 
 
 def show_table_columns(database_name: str, table_name: str):
