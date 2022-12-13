@@ -42,6 +42,8 @@ def db_page(database_name=None, table_name=None):
         if table_name is not None:
             column_list = show_table_columns(database_name, table_name)
             data_list = select_table_data(database_name, table_name)
+            return column_list, data_list
+        return table_list
     return render_template('db.html', database_list=database_list, table_list=table_list,
                            column_list=column_list,
                            data_list=data_list)
