@@ -51,17 +51,14 @@
     </div>
 
     <script>
-        let database = '', table = ''
-
         function changeDatabase(obj) {
-            database = obj.options[obj.selectedIndex].value
-            window.open(`http://localhost:5000/db/${database}`)
-            {#fetch()#}
+            let database = obj.options[obj.selectedIndex].value
+            window.location = `http://localhost:5000/db/${database}`
         }
 
         function changeTable(obj) {
-            table = obj.options[obj.selectedIndex].value
-            fetch(`http://localhost:5000/db/${database}/${table}`)
+            let table = obj.options[obj.selectedIndex].value
+            window.location = `http://localhost:5000/db/${database}/${table}`
         }
     </script>
 {% endblock %}
