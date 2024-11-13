@@ -10,9 +10,9 @@ def open_docx(dirname, filename):
 
 def handle_table(docx):
     table = docx.tables[0]
-    replace_text(table, 0, 2, 0, 0, '2022年3月13日15时59分')
-    replace_text(table, 2, 2, 0, 0, '王守义')
-    replace_text(table, 2, 2, 0, 1, '北港')
+    replace_text(table, 0, 2, 0, 0, '')
+    replace_text(table, 2, 2, 0, 0, '')
+    replace_text(table, 2, 2, 0, 1, '')
     docx.save('../static/tmp/demo.docx')
 
 
